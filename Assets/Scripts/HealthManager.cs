@@ -4,11 +4,18 @@ using UnityEngine;
 using System;
 public class HealthManager : MonoBehaviour
 {
-    public static event Action<string, float> OnGetDamage = delegate { };
+    public static event Action<string, float> OnChangeHealth = delegate { };
     [SerializeField]
     private int maxHp;
     [SerializeField]
     private string nameEntity;
+    public string NameEntity
+    {
+        get
+        {
+            return nameEntity;
+        }
+    }
     [SerializeField]
     private GameObject loseText;
 
@@ -22,11 +29,26 @@ public class HealthManager : MonoBehaviour
     public void GetDamage(int damage)
     {
         hp -= damage;
-        OnGetDamage(nameEntity,(float)hp/(float)maxHp);
-        if(hp <= 0)
+        OnChangeHealth(nameEntity, GetCoefficient());
+        if (hp <= 0)
         {
             Die();
         }
+    }
+
+    public void GetHealth(int health)
+    {
+        hp += health;
+        if(hp > maxHp)
+        {
+            hp = maxHp;
+        }
+        OnChangeHealth(nameEntity, GetCoefficient());
+    }
+
+    public float GetCoefficient()
+    {
+        return ((float)hp / (float)maxHp);
     }
 
     private void Die()

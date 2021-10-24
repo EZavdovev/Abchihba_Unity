@@ -18,7 +18,7 @@ public class EnemyAttack : MonoBehaviour
         HealthManager playerHealth;
         if(collision.gameObject.TryGetComponent<HealthManager>(out playerHealth))
         {
-            if(playerHealth.name == nameTarget)
+            if(playerHealth.NameEntity == nameTarget)
             {
                 playerHealth.GetDamage(damage);
             }

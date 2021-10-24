@@ -20,7 +20,7 @@ public class HealthView : MonoBehaviour
     private const string ENEMY_NAME = "Enemy";
     private void OnEnable()
     {
-        HealthManager.OnGetDamage += ChangeView;
+        HealthManager.OnChangeHealth += ChangeView;
     }
 
     private void Update()
@@ -40,7 +40,7 @@ public class HealthView : MonoBehaviour
 
     private void OnDisable()
     {
-        HealthManager.OnGetDamage -= ChangeView;
+        HealthManager.OnChangeHealth -= ChangeView;
     }
 
     private void ChangeView(string name, float fillAmount)
