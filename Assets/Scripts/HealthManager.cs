@@ -37,6 +37,7 @@ public class HealthManager : MonoBehaviour
             return;
         }
         loseText.SetActive(true);
+        Cursor.visible = true;
         Time.timeScale = 0f;
     }
 }
